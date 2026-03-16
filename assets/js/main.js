@@ -61,4 +61,21 @@
       counter.textContent = counter.dataset.counter + (counter.dataset.suffix || '');
     });
   }
+
+
+  const rotatingWord = document.querySelector('[data-rotating-word]');
+  if (rotatingWord) {
+    const words = ['Tech', 'Skills', 'Innovation', 'Talent', 'Builders'];
+    let wordIndex = 0;
+    const swapWord = () => {
+      wordIndex = (wordIndex + 1) % words.length;
+      rotatingWord.classList.remove('is-changing');
+      void rotatingWord.offsetWidth;
+      rotatingWord.textContent = words[wordIndex];
+      rotatingWord.classList.add('is-changing');
+    };
+    if (!reducedMotion) {
+      setInterval(swapWord, 2200);
+    }
+  }
 })();
