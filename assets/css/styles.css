@@ -98,6 +98,11 @@ button, input, textarea { font: inherit; }
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   position: relative;
   box-shadow: 0 8px 24px rgba(79, 111, 182, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.brand:hover .brand-mark {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(79, 111, 182, 0.45);
 }
 .brand-mark::before,
 .brand-mark::after {
@@ -125,13 +130,17 @@ button, input, textarea { font: inherit; }
   background: transparent;
   padding: 8px;
   border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+.nav-toggle:hover { background: rgba(0,0,0,0.05); }
 .nav-toggle .bar {
   display: block;
   width: 24px;
   height: 2px;
   background: var(--ink);
   margin: 5px 0;
+  transition: all 0.3s ease;
 }
 
 .nav {
@@ -168,6 +177,7 @@ button, input, textarea { font: inherit; }
   transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
 }
 .btn:hover, .button-link:hover { transform: translateY(-2px); }
+.btn:focus-visible, .button-link:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
 .btn-primary {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: var(--white);
@@ -849,6 +859,7 @@ textarea { min-height: 150px; resize: vertical; }
   }
   .hero-art { min-height: 420px; }
   .hero h1 { max-width: none; }
+  .hero .container { gap: 32px; }
   .metrics, .testimonials, .logo-row { grid-template-columns: repeat(2, 1fr); }
   .feature-grid .card:nth-child(1), .feature-grid .card:nth-child(2), .feature-grid .card:nth-child(3) { grid-column: span 12; }
 }
@@ -868,11 +879,20 @@ textarea { min-height: 150px; resize: vertical; }
     display: none;
     flex-direction: column;
     align-items: stretch;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .nav.open { display: flex; }
+  .nav.open {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
   .nav ul { flex-direction: column; gap: 14px; }
   .hero .container { padding: 76px 0 54px; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .hero-stats .stat { padding: 14px; }
+  .hero-stats .stat strong { font-size: 1.1rem; }
   .metrics { grid-template-columns: repeat(2, 1fr); }
   .testimonials, .logo-row { grid-template-columns: 1fr; }
   .section-header { align-items: start; flex-direction: column; }
